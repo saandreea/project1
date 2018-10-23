@@ -1,0 +1,83 @@
+{% extends "model.html" %}
+{%block title %}
+  Book
+{% endblock %}
+{% block body %}
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"> </script>
+
+<div class="continut">
+  <div class="details">
+    <h2>Book Details:</h2>
+  </div>
+  <table>
+    <th> Isbn Number </th>
+    <th> Book Title</th>
+    <th> Book Author</th>
+    <th> Publication Year </th>
+    <tr>
+      <td> {{ book.isbn }}</td>
+      <td> {{ book.title }}</td>
+      <td>{{ book.author }}</td> 
+      <td> {{ book.year }}</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <div class="details">
+    <h4>User Rating</h4>
+  </div>
+  <p style = "margin-left: 10px;">{{avg_review}} average based on {{numar_review}} reviews.</p>
+  <div class="details">
+    <h4>Goodreads Rating</h4>
+    <p style = "margin-left: 10px; color: purple">{{ raspuns_gooodreads }}</p>
+  </div>
+  
+  <hr style="border:3px solid #f1f1f1; width:400px; margin-left: 10px;" align="left">
+  
+  {% for review in reviews %}
+  <div class="cont">
+    <p><span> Rating: {{ review.rating}}</span> {{ review.username }}</p>
+    <p>{{ review.text_message }} </p>
+  </div>
+  {% else %}
+  
+  <div class="cont">
+    <p>This book has no reviews.</p>
+  </div>
+  {% endfor %}
+
+  <form action="/review" method="post" autocomplete="off">
+    <div class="form-group">
+      <input type="hidden" id="bk_id" name="bk_id" value= {{ book.book_id }}>
+      <div class="details">
+        <h4>Rate this book</h4>
+      </div>
+      <!-- <label>Rate this book...</label> -->
+      <!-- <br> -->
+      <label for="rating">Rating:</label>
+      <select name="rating">
+        <option value="5">5</option>
+        <option value="4">4</option>
+        <option value="3">3</option>
+        <option value="2">2</option>
+        <option value="1">1</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="comment">Comment:</label>
+      <textarea name="text" class="form-control" rows="5" id="comment"></textarea>
+    </div>
+    <button id="buton" type="submit" class="btn btn-default">Submit Review</button>
+  </form>
+  
+<script>
+  $( document ).ready(function() {
+      var book_id = $("#bk_id").val();
+
+      $( "#buton" ).click(function() {
+      $.get( "/review", { book_id: book_id });
+    });
+});
+</script>
+{% endblock %}

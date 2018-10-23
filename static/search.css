@@ -1,0 +1,22 @@
+.top-left-top {
+  position: absolute;
+  top: 45px;
+  left: 2px;
+}
+
+.welcome_text {
+  font-size: 20px;
+  text-align: left;
+  color:purple;
+  font-weight: bold;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+div .container {
+  color: black;
+}
+
+input#buttonsubmit {
+  color: black;
+}
+

@@ -1,0 +1,40 @@
+{% extends "model.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block body %}
+
+  {% if error %}
+    <div class="alert alert-danger" role="alert">
+      {{ error }}
+    </div>
+  {% endif %}
+  <form action="/login" method="post" autocomplete="off">
+    <div class="form-row">
+      
+      <div class="col col-3">
+        <div class="form-group">
+          <label for="username" class="control-label">Username</label>
+          <div class="form-inline row">
+            <div class="form-group col-sm-6">
+              <input type="username" name="username" class="form-control" id="username" placeholder="Username" {% if username %} value="{{username}}" {% endif %}>
+            </div> <br>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputPassword" class="control-label">Password</label>
+          <div class="form-inline row">
+            <div class="form-group col-sm-6">
+              <input type="password" name="password" autocomplete="new-password" data-minlength="6" class="form-control" id="inputPassword" placeholder="Password" {% if password %} value="{{password}}" {% endif %}>
+            </div> <br>
+          </div>
+        </div>
+      </div>
+      <div class="col col-2">
+        <button class="btn btn-primary login" type="submit" ><img src="/static/images/login.jpg" width="200px" height="200px"></button>
+      </div>
+    </div>
+  </form>
+{% endblock %}

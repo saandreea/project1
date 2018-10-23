@@ -1,0 +1,87 @@
+{% extends "model.html" %}
+
+{% block title %} Search books {% endblock %}
+
+{% block body %}
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"> </script>
+<script src="/static/js/script.js"></script>
+
+<div class="container">
+<div class="top-left-top">
+  <div class="welcome_text">
+    <h2> 
+      {% if alerta %}
+        <b>{{ alerta }}</b>
+      {% endif%}
+    </h2> 
+  </div>
+</div>
+<br>
+<br>
+
+<form class="form-inline" id="form-search" method="get">
+  <label class="mr-sm-2" for="inlineFormCustomSelect" style="color: #563d7c;">Search:</label>
+  <div class="ui search">
+    <input name="search_book" id = "cautat" type="text" list="elements", placeholder="ISBN Number, Author or Title..." style="color:black">
+    <datalist id="elements">
+      {% for elem in lista %}
+        <option value="{{ elem }}">{{ elem }}</option>
+      {% endfor %}
+    </datalist>
+</div>
+  <input  id="buttonsubmit" type="submit" value="Search!" />
+</form>
+</div>
+<div id="content"></div>
+
+
+<script>
+  var createTable = function (data) {
+    var html = '';
+
+    if (data['isbn'].length == 0) {
+      html = '<br> <br> <p> Your search returned no data! Please try again! <p>';
+    } else {
+      html = '<table>' +
+                '<tr>' +
+                  '<th> Isbn</th>' +
+                  '<th> Title </th>' +
+                  '<th> Author </th>' +
+                  '<th> Link </th>'
+                '</tr>';
+      
+      for (var j = 0; j < data["isbn"].length; j++) {
+        var isbn = data["isbn"][j]
+        var title = data["title"][j]
+        var author = data["author"][j]
+        html += '<tr>' + 
+                  '<td>' + isbn + '</td>' + 
+                  '<td>' + title + '</td>' + 
+                  '<td>' + author + '</td>' + 
+                  '<td>' + '<a href="/books/' + isbn + '"> Find more...</a>' + '</td>' +
+                '</tr>';
+      }
+      html += '</table>';
+    } 
+    console.log(html)
+    return html;
+  };
+
+  
+
+  $(document).ready(function() {
+    $('#buttonsubmit').click(function() {
+      var book_searched = $('#cautat').val();
+
+      $.get('search/update', {
+        book_searched:book_searched}, function(data) {
+          var html = createTable(data);
+          $("#content").html(html);
+        })
+
+        return false;
+  });
+});
+</script>
+{% endblock %}

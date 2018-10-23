@@ -1,0 +1,82 @@
+{% extends "model.html" %}
+
+{% block title %} Search books {% endblock %}
+
+{% block body %}
+
+<p> Hello world!</p>
+{% endblock %}
+
+
+// $('.ui.search')
+//   .search({
+//     apiSettings: {
+//       url: 'http://127.0.0.1:5000/search/book?search_book={query}'
+//     },
+//     fields: {
+//       ISBN: 'isbn',
+//       title: 'title',
+//       author: 'author',
+//       year: 'year'
+//     },
+//     minCharacters : 2
+//   });
+
+// $(document).ready(function() {
+//   $('#buttonsubmit').click(function() {
+//     $("#content").text("Hello to my world!");
+//     // location.reload(true);
+//     return false;
+
+//   });
+// });
+// var createTable = function (data) {
+//   var html = '';
+
+//   if (data.length == 0) {
+//     html = '<br> <br> <p> Your search returned no data! Please try again <p>';
+//   } else {
+//     html = '<table>' +
+//               '<tr>' +
+//                 '<th> Isbn</th>' +
+//                 '<th> Title </th>' +
+//                 '<th> Author </th>'
+//               '</tr>';
+//     for (var j = 0; j < data.length; j++) {
+//       var isbn = data[j]['isbn'];
+//       var title = data[j]['title'];
+//       var author = data[j]['author'];
+      
+//       html += '<tr>' + '<td>' + isbn + '</td>' + '<td>' + title + '</td>' + '<td>' + author + '</td>' + '</tr>';
+//     }
+//     html += '</table>';
+//   } 
+//   return html;
+// };
+
+// $('#form-search').submit(function(e) {
+//   var book_searched = $('.ui.search').search('get value');
+
+//   console.log("book:", book_searched)
+
+//   $('#content').text(book_searched);
+  
+  // $.get('search/update', {
+  //   book_searched: book_searched
+  // }, function(data) {
+  //   console.log('Data',data);
+  //   var html = createTable(data);
+
+  //   $('.content').html(html);
+  // })
+
+//   e.preventDefault();
+// });
+
+// for (var j = 0; j < data.length; j++) {
+  //   var isbn = data[j]['isbn'];
+  //   var title = data[j]['title'];
+  //   var author = data[j]['author'];
+    
+  //   html += '<tr>' + '<td>' + isbn + '</td>' + '<td>' + title + '</td>' + '<td>' + author + '</td>' + '</tr>';
+  // }

@@ -1,0 +1,30 @@
+{%extends "model.html"%}
+
+{% block title %} Home Page {% endblock %}
+
+{% block body %}
+  <div class="container">
+    <img src="/static/images/homepage4.jpg" style="width:100%" align="center">
+    <div class="top-left">
+      <div class="welcome_text">
+        <h2> 
+          {% if alerta %}
+            <b>{{ alerta }}</b>
+          {% endif%}
+        </h2> 
+      </div>
+        <br>
+        <div class="index_text">
+          <h2>
+            <!-- <b>Andreea's Books </b><br /> <br> -->
+            <br>
+              The more that you read, the more things you will know.  <br /> 
+              The more that you learn, the more places you'll go. <br /><br />
+              Think before you speak. Read before you think.<br />
+          </h2>
+        </div>
+    </div>
+  </div>
+
+  {% endblock %}
+</body>

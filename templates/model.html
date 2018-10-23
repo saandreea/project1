@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/hello.css">
+    <link rel="stylesheet" href="/static/hey.css">
+    <link rel="stylesheet" href="/static/user_rating.css">
+    <link rel="stylesheet" href="/static/book.css">
+    <link rel="stylesheet" href="/static/search.css">
+    <link rel="stylesheet" href="/static/index.css">
+    <link rel="stylesheet" href="/static/login.css">
+    <title>
+      {% block title %}
+      {% endblock %}
+    </title>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-light" style="background-color: #563d7c;">
+      <a class="navbar-brand" href="/"><img src="/static/images/logo2.jpg"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          {% if session.user_id %}
+          <a class="nav-item nav-link" href="/search">Search </a>
+          <a class="nav-item nav-link" href="/logout">Log out </a>
+          {% else %}
+          <a class="nav-item nav-link" href="/register">Register </a>
+          <a class="nav-item nav-link" href="/login">Log In </a>
+          {% endif %}
+        </div>
+      </div>
+      </nav>
+    {% block body %}
+    {% endblock %}
+  </body>
+</html>
